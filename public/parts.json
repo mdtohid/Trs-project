@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Wood Drill Bits",
+        "price": 5,
+        "availableQuantity": 250,
+        "mustQuantity": 50,
+        "description": "Wood drilling bits are for drilling woods. Get your accurate shape everytime",
+        "photoUrl": "http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG.png"
+    },
+    {
+        "id": 1,
+        "name": "Wood Drill Bits",
+        "price": 5,
+        "availableQuantity": 250,
+        "mustQuantity": 50,
+        "description": "Wood drilling bits are for drilling woods. Get your accurate shape everytime",
+        "photoUrl": "http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG.png"
+    },
+    {
+        "id": 1,
+        "name": "Wood Drill Bits",
+        "price": 5,
+        "availableQuantity": 250,
+        "mustQuantity": 50,
+        "description": "Wood drilling bits are for drilling woods. Get your accurate shape everytime",
+        "photoUrl": "http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG.png"
+    },
+    {
+        "id": 1,
+        "name": "Wood Drill Bits",
+        "price": 5,
+        "availableQuantity": 250,
+        "mustQuantity": 50,
+        "description": "Wood drilling bits are for drilling woods. Get your accurate shape everytime",
+        "photoUrl": "http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG.png"
+    },
+    {
+        "id": 1,
+        "name": "Wood Drill Bits",
+        "price": 5,
+        "availableQuantity": 250,
+        "mustQuantity": 50,
+        "description": "Wood drilling bits are for drilling woods. Get your accurate shape everytime",
+        "photoUrl": "http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG.png"
+    }
+]
