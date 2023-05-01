@@ -1,13 +1,24 @@
 import React from 'react';
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 import './Header.css';
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const [signOut, loading1, error1] = useSignOut(auth);
+    
     const navbarOption =
         <>
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-            <li><a>Item 3</a></li>
-            <li><a>Item 4</a></li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to=''>Item 2</Link></li>
+            <li><Link to=''>Item 3</Link></li>
+            <li><Link to=''>Item 4</Link></li>
         </>
+
+    if(loading || loading1){
+        return <Loading></Loading>
+    }
     return (
         <div className="navbar bg-gray-100 py-4 lg:px-16">
             <div className="navbar-start">
@@ -26,7 +37,11 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1 hidden lg:flex">
                     {navbarOption}
                 </ul>
-                <a className="btn btn-outline btn-primary">LOGIN</a>
+                {
+                    user?<Link onClick={async()=>await signOut()} className="btn btn-outline btn-primary">Logout</Link>
+                    :
+                    <Link to='/login' className="btn btn-outline btn-primary">LOGIN</Link>
+                }
                 <label className="swap swap-rotate ms-3">
 
                     {/* <!-- this hidden checkbox controls the state --> */}
