@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import google from '../../../src/image/google.ico';
@@ -10,36 +10,39 @@ import SignWithOthers from '../SignWithOthers/SignWithOthers';
 import Loading from '../Loading/Loading';
 
 const Signup = () => {
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
 
-      const [updateProfile, updating, error1] = useUpdateProfile(auth);
+    const [updateProfile, updating, error1] = useUpdateProfile(auth);
 
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
-
-      console.log(user);
-
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const onSubmit = async(data) =>{
+    const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
         const name = data.name;
         // console.log(email, password)
         await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName:name })
-        reset();  
-        navigate('/');
+        await updateProfile({ displayName: name });
     };
 
-    if(loading||updating){
+    useEffect(() => {
+        if (user) {
+            reset();
+            navigate('/');
+        }
+    }, [user, reset, navigate]);
+
+    if (loading || updating) {
         return <Loading></Loading>
     }
-    
+
     return (
         <form className='flex flex-col gap-9 items-center justify-center w-full' onSubmit={handleSubmit(onSubmit)}>
             <div className='w-8/12 md:w-4/12 mt-14'>

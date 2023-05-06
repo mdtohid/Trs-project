@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,37 +7,37 @@ import Loading from '../Loading/Loading';
 import SignWithOthers from '../SignWithOthers/SignWithOthers';
 
 const Login = () => {
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
-    
+    ] = useSignInWithEmailAndPassword(auth);
+    console.log(user);
     const navigate = useNavigate();
 
-    //   console.log(user);
-    
-    const { register, formState: { errors }, handleSubmit , reset} = useForm();
-    const onSubmit = (data) =>{
+    const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
-        signInWithEmailAndPassword(email,password);
-        console.log(email,password);
-        reset();
-        navigate('/');
+        await signInWithEmailAndPassword(email, password);
+        // console.log(email, password);
+        console.log(user);
     };
 
-    if(loading){
+    useEffect(() => {
+        if (user) {
+            reset();
+            navigate('/');
+        }
+    }, [user, reset, navigate]);
+
+    if (loading) {
         return <Loading></Loading>
     }
 
     return (
-        // <div className='flex flex-col min-h-screen items-center justify-center'>
-        //     <input type="text" placeholder="Enter full name" className=" w-full max-w-sm border border-gray-400 p-3 rounded-md mb-11" />
-        //     <input type="text" placeholder="Enter full name" className=" w-full max-w-sm border border-gray-400 p-3 rounded-md mb-11" />
-        // </div>
-
         <form className='flex flex-col gap-11 min-h-screen items-center justify-center w-full' onSubmit={handleSubmit(onSubmit)}>
             <div className='w-8/12 md:w-4/12 mt-14'>
                 <h1 className='text-2xl text-blue-400'>Trs</h1>
@@ -69,6 +69,10 @@ const Login = () => {
             </div>
 
             <div className='w-8/12 md:w-4/12'>
+                <p className='text-left mb-2'>
+                    {error?.message === 'Firebase: Error (auth/user-not-found).' && 'User not found'}
+                    {error?.message === 'Firebase: Error (auth/wrong-password).' && 'Wrong password.Try again'}
+                </p>
                 <input type="submit" value='Login' className='btn btn-outline w-full' />
                 <p><Link to='/signup'>Create a account?</Link></p>
             </div>
@@ -77,3 +81,4 @@ const Login = () => {
 };
 
 export default Login;
+
