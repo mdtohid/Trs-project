@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import StarRating from '../StarRating/StarRating';
+import './MyReview.css';
 
 const MyReview = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [rating, setRating] = useState(0);
     console.log(rating);
 
+    const deviceWidth = window.screen.width;
+    console.log(`Device width: ${deviceWidth}px`);
+
     const onSubmit = async (data) => {
         const name = data.name;
         const comment = data.comment;
         const starRating = rating;
-        const orderDetails = {
+        const review = {
             name,
             comment,
             starRating
         }
-        console.log(orderDetails);
+        console.log(review);
+        await fetch(`http://localhost:5000/myReview`, {
+            method: "POST", // or 'PUT'
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(review),
+        })
+            .then(res => res.json())
+            .then(data => console.log(data));
+
         reset();
     };
 
-    const handleRating = (event) => {
-        // console.log(event?.target.value);
-        setRating(event?.target.value)
-    }
     return (
         <div className='w-full'>
             <h1 className='text-2xl text-center font-semibold my-5'>Welcome to your Review</h1>
@@ -44,15 +55,11 @@ const MyReview = () => {
                     />
                     {errors.comment && <p role="alert">{errors.comment?.message}</p>}
                 </div>
-                <div className="rating rating-lg" onChange={handleRating}>
-                    <input type="radio" name="rating-1" className="mask mask-star bg-amber-300" value='1' />
-                    <input type="radio" name="rating-1" className="mask mask-star bg-amber-300" value='2' />
-                    <input type="radio" name="rating-1" className="mask mask-star bg-amber-300" value='3' />
-                    <input type="radio" name="rating-1" className="mask mask-star bg-amber-300" value='4' />
-                    <input type="radio" name="rating-1" className="mask mask-star bg-amber-300" value='5' />
-                </div>
 
-                <input className='btn btn-outline input input-sm   w-full max-w-md' type="submit" value='ORDER NOW' />
+                <div className='w-full'>
+                    <StarRating setRating={setRating}></StarRating>
+                    <input className='btn btn-outline input input-sm   w-full max-w-md' type="submit" value='ORDER NOW' />
+                </div>
             </form>
         </div>
     );

@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
+import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 
 const OrderItem = () => {
     const { id } = useParams();
+    const [user, loading, userError] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [quantity, setQuantity] = useState(0);
     // console.log(quantity);
@@ -30,6 +33,7 @@ const OrderItem = () => {
         const mobileNumber = data.mobileNumber;
         const address = data.address;
         const quantity = data.quantity;
+        const totalPrice = price * quantity;
         const orderDetails = {
             itemId: _id,
             itemName: name,
@@ -37,7 +41,8 @@ const OrderItem = () => {
             email,
             mobileNumber,
             address,
-            quantity
+            quantity,
+            totalPrice
         }
         console.log(orderDetails);
         reset();
@@ -79,6 +84,8 @@ const OrderItem = () => {
 
                     <input
                         placeholder="Enter Email" className="input input-bordered w-full max-w-xs"
+                        value={user?.email}
+                        readOnly
                         {...register("email", { required: "Email Address is required" })}
                         aria-invalid={errors.email ? "true" : "false"}
                     />

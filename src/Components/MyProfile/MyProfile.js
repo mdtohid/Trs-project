@@ -16,6 +16,7 @@ const MyProfile = () => {
             (res) => res.json(),
           ),
       })
+      console.log(profile);
 
     const onSubmit = async (data) => {
         const name = user.displayName;

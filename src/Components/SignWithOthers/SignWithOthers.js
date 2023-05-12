@@ -5,16 +5,22 @@ import auth from '../../firebase.init';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Loading/Loading';
 import { useNavigate } from 'react-router';
+import useToken from '../../Hooks/useToken';
+import { useEffect } from 'react';
 const SignWithOthers = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithGithub, gitUser, gitLoading, gitError] = useSignInWithGithub(auth);
 
-    const navigate = useNavigate();
-    // console.log(gitUser);
+    const [token] = useToken(gUser||gitUser)
 
-    if(gUser||gitUser){
-        navigate('/');
-    }
+    const navigate = useNavigate();
+
+
+    useEffect(()=>{
+        if(token){
+            navigate('/');
+        }
+    },[token,navigate])
     
     if(gLoading||gitLoading){
         return <Loading></Loading>

@@ -10,6 +10,7 @@ import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
 import OrderItem from './Components/OrderItem/OrderItem';
 import Signup from './Components/Signup/Signup';
+import StarRating from './Components/StarRating/StarRating';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/star' element={<StarRating></StarRating>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/items' element={<Items></Items>}></Route>

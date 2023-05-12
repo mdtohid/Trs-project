@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../Hooks/useToken';
 import Loading from '../Loading/Loading';
 import SignWithOthers from '../SignWithOthers/SignWithOthers';
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    
+    const navigate = useNavigate();
+
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    console.log(user);
-    const navigate = useNavigate();
+
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+    const [token] = useToken(user);
 
     const onSubmit = async (data) => {
         const email = data.email;
@@ -27,11 +30,11 @@ const Login = () => {
     };
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             reset();
             navigate('/');
         }
-    }, [user, reset, navigate]);
+    }, [token, reset, navigate]);
 
     if (loading) {
         return <Loading></Loading>

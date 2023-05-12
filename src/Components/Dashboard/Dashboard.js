@@ -5,7 +5,7 @@ import './Dashboard.css';
 
 const Dashboard = () => {
     return (
-        <div className="drawer drawer-mobile">
+        <div className="drawer drawer-mobile h-full lg:h-screen	">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
                 {/* <!-- Page content here --> */}
@@ -13,7 +13,7 @@ const Dashboard = () => {
                 <Outlet />
             </div>
 
-            <div className="drawer-side">
+            <div className="drawer-side h-screen">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 bg-gray-100 text-base-content text-xl font-semibold">
                     {/* <!-- Sidebar content here --> */}

@@ -8,6 +8,7 @@ import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import SignWithOthers from '../SignWithOthers/SignWithOthers';
 import Loading from '../Loading/Loading';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
@@ -18,6 +19,8 @@ const Signup = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
+    const [token] = useToken(user);
 
     const [updateProfile, updating, error1] = useUpdateProfile(auth);
 
@@ -33,11 +36,11 @@ const Signup = () => {
     };
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             reset();
             navigate('/');
         }
-    }, [user, reset, navigate]);
+    }, [token, reset, navigate]);
 
     if (loading || updating) {
         return <Loading></Loading>

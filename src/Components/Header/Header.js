@@ -8,6 +8,10 @@ const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const [signOut, loading1, error1] = useSignOut(auth);
 
+    if(loading||loading1){
+        return <Loading></Loading>
+    }
+
     const navbarOption =
         <>
             <li><Link to='/'>Home</Link></li>
