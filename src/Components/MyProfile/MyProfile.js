@@ -4,19 +4,62 @@ import auth from '../../firebase.init';
 import avatar from '../../image/avatar.ico';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from '@tanstack/react-query';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router';
 
 const MyProfile = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+    const [profile, setProfile]= useState({});
 
-    const { isLoading, error1, data:profile, refetch} = useQuery({
-        queryKey: ['myProfile', user],
-        queryFn: () =>
-          fetch(`http://localhost:5000/myProfile/${user?.email}`).then(
-            (res) => res.json(),
-          ),
-      })
-      console.log(profile);
+    // const { isLoading, error1, data: profile, refetch } = useQuery({
+    //     queryKey: ['myProfile', user],
+    //     queryFn: () =>
+    //         fetch(`http://localhost:5000/myProfile/${user?.email}`, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    //             }
+    //         }).then(
+    //              (res) => {
+    //                 if (res.status === 403) {
+    //                     const signOut = async () => {
+    //                         await signOut(auth)
+    //                         localStorage.removeItem('accessToken');
+    //                         navigate('/login');
+    //                     }
+    //                     signOut();
+    //                 }
+    //                 return res.json()
+    //             }
+    //         ),
+    // })
+    // console.log(profile);
+
+
+
+    // ..........For asynchronous, fetch is the best option ............
+    useEffect(() => {
+    if (user) {
+        fetch(`http://localhost:5000/myProfile/${user?.email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                // console.log('res', res);
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    navigate('/login');
+                }
+                return res.json();
+            })
+            .then(data => setProfile(data));
+    }
+}, [user, user?.email, navigate]);
 
     const onSubmit = async (data) => {
         const name = user.displayName;
@@ -56,8 +99,8 @@ const MyProfile = () => {
         })
             .then(res => res.json())
             .then(data => console.log(data));
-        
-        refetch()
+
+        // refetch()
     };
 
     return (
