@@ -8,6 +8,7 @@ import AddItem from './Components/AddItem/AddItem';
 import AddItemModel from './Components/AddItemModel/AddItemModel';
 import AllUsers from './Components/AllUsers/AllUsers';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import Items from './Components/Items/Items';
@@ -43,7 +44,7 @@ function App() {
         <Route path='/items' element={<Items></Items>}></Route>
         <Route path='/items/:id' element={<OrderItem></OrderItem>}></Route>
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
-          <Route path="myProfile" element={<MyProfile></MyProfile>} />
+          <Route index path="/dashboard" element={<MyProfile></MyProfile>} />
           <Route path="myReview" element={<MyReview></MyReview>} />
           <Route path="myOrder" element={<MyOrder></MyOrder>} />
           <Route path="allUsers" element={<AllUsers></AllUsers>} />
@@ -58,6 +59,7 @@ function App() {
       </Routes>
       <AddItemModel id={id} refetch={refetch}></AddItemModel>
       <ToastContainer />
+      <Footer></Footer>
     </div>
   );
 }

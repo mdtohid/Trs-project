@@ -6,7 +6,7 @@ import UserReviews from '../UserReviews/UserReviews';
 
 const Home = () => {
     return (
-        <div>
+        <div className='mb-20'>
             <Carousel></Carousel>
             <ItemsHome></ItemsHome>
             <UserReviews></UserReviews>

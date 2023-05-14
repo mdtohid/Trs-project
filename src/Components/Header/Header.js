@@ -8,7 +8,7 @@ const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const [signOut, loading1, error1] = useSignOut(auth);
 
-    if(loading||loading1){
+    if (loading || loading1) {
         return <Loading></Loading>
     }
 
@@ -61,8 +61,9 @@ const Header = () => {
 
                 <div className="drawer-content flex flex-col items-center justify-center">
                     {/* <!-- Page content here --> */}
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open Dashboard</label>
                 </div>
+
             </div>
         </div>
     );
