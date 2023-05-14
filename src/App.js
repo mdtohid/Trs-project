@@ -1,12 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router';
+import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import AddItem from './Components/AddItem/AddItem';
+import AddItemModel from './Components/AddItemModel/AddItemModel';
 import AllUsers from './Components/AllUsers/AllUsers';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import Items from './Components/Items/Items';
+import Loading from './Components/Loading/Loading';
 import Login from './Components/Login/Login';
+import ManageItems from './Components/ManageItems/ManageItems';
 import MyOrder from './Components/MyOrder/MyOrder';
 import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
@@ -15,6 +22,16 @@ import Signup from './Components/Signup/Signup';
 import StarRating from './Components/StarRating/StarRating';
 
 function App() {
+  const [id, setId] = useState('');
+  const { isLoading, error1, data: items, refetch } = useQuery({
+    queryKey: ['items'],
+    queryFn: () =>
+        fetch(`http://localhost:5000/items`).then(
+            (res) => res.json(),
+        ),
+})
+
+
   return (
     <div className="">
       <Header></Header>
@@ -30,9 +47,17 @@ function App() {
           <Route path="myReview" element={<MyReview></MyReview>} />
           <Route path="myOrder" element={<MyOrder></MyOrder>} />
           <Route path="allUsers" element={<AllUsers></AllUsers>} />
-          <Route path="addItem" element={<AddItem></AddItem>} />
+          <Route path="addItem" element={<AddItem refetch={refetch}></AddItem>} />
+          <Route path="manageItems" element={<ManageItems 
+          items={items}
+          isLoading={isLoading}
+          setId={setId}
+          >
+          </ManageItems>} />
         </Route>
       </Routes>
+      <AddItemModel id={id} refetch={refetch}></AddItemModel>
+      <ToastContainer />
     </div>
   );
 }

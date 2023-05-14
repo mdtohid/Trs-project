@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -21,7 +23,7 @@ const Dashboard = () => {
                     <li><Link to='myOrder'>My Orders</Link></li>
                     <li><Link to='allUsers'>All Users</Link></li>
                     <li><Link to='addItem'>Add a Item</Link></li>
-                    <li><Link to=''>Manage Items</Link></li>
+                    <li><Link to='manageItems'>Manage Items</Link></li>
                     <li><Link to=''>Manage All Orders</Link></li>
                 </ul>
             </div>

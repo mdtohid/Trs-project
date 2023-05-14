@@ -1,7 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const AddItem = () => {
+const AddItem = ({refetch}) => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const onSubmit = async (data) => {
         const name = data.name;
@@ -19,28 +21,32 @@ const AddItem = () => {
             method: "POST", // or 'PUT',
             body: formData,
         })
-        .then(res => res.json())
-        .then(data => {
-            const photoUrl = data.data.display_url;
-            console.log(photoUrl);
-            const addItemDetails = {
-                name,
-                description,
-                availableQuantity,
-                price,
-                photoUrl
-            }
+            .then(res => res.json())
+            .then(data => {
+                const photoUrl = data.data.display_url;
+                console.log(photoUrl);
+                const addItemDetails = {
+                    name,
+                    description,
+                    availableQuantity,
+                    price,
+                    photoUrl
+                }
 
-            fetch(`http://localhost:5000/addItem`, {
-                method: "POST", // or 'PUT'
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(addItemDetails),
-            })
-                .then(res => res.json())
-                .then(data => console.log(data));
-        });
+                fetch(`http://localhost:5000/addItem`, {
+                    method: "POST", // or 'PUT'
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(addItemDetails),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        toast.success("Add Item success");
+                        refetch();
+                    });
+            });
 
         reset();
     };
@@ -86,7 +92,7 @@ const AddItem = () => {
                 {errors.price && <p role="alert">{errors.price?.message}</p>}
 
                 <input
-                    type="file" placeholder="Enter Price" className="file-input file-input-accent  file-input-bordered w-full"
+                    type="file" placeholder="" className="file-input file-input-accent  file-input-bordered w-full"
                     {...register("img", { required: "Image is required" })}
                     aria-invalid={errors.img ? "true" : "false"}
                 />
