@@ -13,33 +13,6 @@ const MyProfile = () => {
     const navigate = useNavigate();
     const [profile, setProfile]= useState({});
 
-    // const { isLoading, error1, data: profile, refetch } = useQuery({
-    //     queryKey: ['myProfile', user],
-    //     queryFn: () =>
-    //         fetch(`http://localhost:5000/myProfile/${user?.email}`, {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-    //             }
-    //         }).then(
-    //              (res) => {
-    //                 if (res.status === 403) {
-    //                     const signOut = async () => {
-    //                         await signOut(auth)
-    //                         localStorage.removeItem('accessToken');
-    //                         navigate('/login');
-    //                     }
-    //                     signOut();
-    //                 }
-    //                 return res.json()
-    //             }
-    //         ),
-    // })
-    // console.log(profile);
-
-
-
-    // ..........For asynchronous, fetch is the best option ............
     useEffect(() => {
     if (user) {
         fetch(`http://localhost:5000/myProfile/${user?.email}`, {
@@ -100,7 +73,6 @@ const MyProfile = () => {
             .then(res => res.json())
             .then(data => console.log(data));
 
-        // refetch()
     };
 
     return (

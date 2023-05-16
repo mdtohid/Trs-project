@@ -46,18 +46,21 @@ function App() {
         <Route path='/items' element={<RequireAuth><Items></Items></RequireAuth>}></Route>
         <Route path='/items/:id' element={<RequireAuth><OrderItem></OrderItem></RequireAuth>}></Route>
         <Route path='/team' element={<Team></Team>}></Route>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
-            <Route index element={<MyProfile></MyProfile>} />
-            <Route path="myReview" element={<MyReview></MyReview>} />
-            <Route path="myOrder" element={<MyOrder></MyOrder>} />
-            <Route path="allUsers" element={<AllUsers></AllUsers>} />
-            <Route path="addItem" element={<AddItem refetch={refetch}></AddItem>} />
-            <Route path="manageItems" element={<ManageItems
-              items={items}
-              isLoading={isLoading}
-              setId={setId}
-            >
-            </ManageItems>} />
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard></Dashboard>
+          </RequireAuth>}>
+              <Route index element={<MyProfile></MyProfile>} />
+              <Route path="myReview" element={<MyReview></MyReview>} />
+              <Route path="myOrder" element={<MyOrder></MyOrder>} />
+              <Route path="allUsers" element={<AllUsers></AllUsers>} />
+              <Route path="addItem" element={<AddItem refetch={refetch}></AddItem>} />
+              <Route path="manageItems" element={<ManageItems
+                items={items}
+                isLoading={isLoading}
+                setId={setId}
+              >
+              </ManageItems>} />
         </Route>
       </Routes>
       <AddItemModel id={id} refetch={refetch}></AddItemModel>

@@ -38,7 +38,7 @@ const ItemsHome = () => {
                 <h1 className='text-center text-4xl font-semibold my-8'>Our Items</h1>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-14'>
                     {
-                        items.slice(0, 3).map(item => <Item item={item}></Item>)
+                        items.slice(0, 3)?.map(item => <Item item={item}></Item>)
                     }
                 </div>
                 <div className='text-center my-5'>

@@ -8,11 +8,7 @@ import Loading from '../Loading/Loading';
 import SignWithOthers from '../SignWithOthers/SignWithOthers';
 
 const Login = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const from = location.state?.from?.pathname || "/";
-    console.log(from);
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const [
         signInWithEmailAndPassword,
@@ -21,28 +17,31 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
-
     const [token] = useToken(user);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    console.log(from);
+
+    useEffect( () =>{
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
+
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
         await signInWithEmailAndPassword(email, password);
         // console.log(email, password);
-        console.log(user);
     };
 
-    useEffect(() => {
-        if (token) {
-            reset();
-            navigate(from, { replace: true });
-        }
-    }, [token, reset, navigate,from]);
-
-    if (loading) {
-        return <Loading></Loading>
-    }
+    
 
     return (
         <form className='flex flex-col gap-11 min-h-screen items-center justify-center w-full' onSubmit={handleSubmit(onSubmit)}>
