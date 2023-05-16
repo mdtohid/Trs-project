@@ -19,18 +19,20 @@ import MyOrder from './Components/MyOrder/MyOrder';
 import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
 import OrderItem from './Components/OrderItem/OrderItem';
+import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Signup from './Components/Signup/Signup';
 import StarRating from './Components/StarRating/StarRating';
+import Team from './Components/Team/Team';
 
 function App() {
   const [id, setId] = useState('');
   const { isLoading, error1, data: items, refetch } = useQuery({
     queryKey: ['items'],
     queryFn: () =>
-        fetch(`http://localhost:5000/items`).then(
-            (res) => res.json(),
-        ),
-})
+      fetch(`http://localhost:5000/items`).then(
+        (res) => res.json(),
+      ),
+  })
 
 
   return (
@@ -41,20 +43,21 @@ function App() {
         <Route path='/star' element={<StarRating></StarRating>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
-        <Route path='/items' element={<Items></Items>}></Route>
-        <Route path='/items/:id' element={<OrderItem></OrderItem>}></Route>
+        <Route path='/items' element={<RequireAuth><Items></Items></RequireAuth>}></Route>
+        <Route path='/items/:id' element={<RequireAuth><OrderItem></OrderItem></RequireAuth>}></Route>
+        <Route path='/team' element={<Team></Team>}></Route>
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
-          <Route index path="/dashboard" element={<MyProfile></MyProfile>} />
-          <Route path="myReview" element={<MyReview></MyReview>} />
-          <Route path="myOrder" element={<MyOrder></MyOrder>} />
-          <Route path="allUsers" element={<AllUsers></AllUsers>} />
-          <Route path="addItem" element={<AddItem refetch={refetch}></AddItem>} />
-          <Route path="manageItems" element={<ManageItems 
-          items={items}
-          isLoading={isLoading}
-          setId={setId}
-          >
-          </ManageItems>} />
+            <Route index element={<MyProfile></MyProfile>} />
+            <Route path="myReview" element={<MyReview></MyReview>} />
+            <Route path="myOrder" element={<MyOrder></MyOrder>} />
+            <Route path="allUsers" element={<AllUsers></AllUsers>} />
+            <Route path="addItem" element={<AddItem refetch={refetch}></AddItem>} />
+            <Route path="manageItems" element={<ManageItems
+              items={items}
+              isLoading={isLoading}
+              setId={setId}
+            >
+            </ManageItems>} />
         </Route>
       </Routes>
       <AddItemModel id={id} refetch={refetch}></AddItemModel>
