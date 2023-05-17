@@ -1,12 +1,16 @@
 import React from 'react';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 import './Header.css';
 const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const [signOut, loading1, error1] = useSignOut(auth);
+
+    const location = useLocation();
+    const pathname = location.pathname;
+    console.log(location.pathname);
 
     if (loading || loading1) {
         return <Loading></Loading>
@@ -61,11 +65,28 @@ const Header = () => {
 
                 </label>
 
-                <div className="drawer-content flex flex-col items-center justify-center">
-                    {/* <!-- Page content here --> */}
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open Dashboard</label>
-                </div>
-
+                {
+                    pathname === '/dashboard'
+                    ||
+                    pathname === '/dashboard/myReview'
+                    ||
+                    pathname === '/dashboard/myOrder'
+                    ||
+                    pathname === '/dashboard/allUsers'
+                    ||
+                    pathname === '/dashboard/addItem'
+                    ||
+                    pathname === '/dashboard/manageItems'
+                    ||
+                    pathname === '/dashboard/manageAllOrders'
+                    ?
+                        <div className="drawer-content flex flex-col items-center justify-center">
+                            {/* <!-- Page content here --> */}
+                            <label htmlFor="my-drawer-2" className="btn btn-info drawer-button lg:hidden">Dashboard</label>
+                        </div>
+                        :
+                        ''
+                }
             </div>
         </div>
     );

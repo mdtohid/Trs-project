@@ -11,6 +11,7 @@ const AddItem = ({refetch}) => {
         const availableQuantity = data.availableQuantity;
         const price = data.price;
         const img = data.img;
+        const mustQuantity = data.mustQuantity;
 
         const formData = new FormData();
         const imgFile = img[0];
@@ -30,7 +31,8 @@ const AddItem = ({refetch}) => {
                     description,
                     availableQuantity,
                     price,
-                    photoUrl
+                    photoUrl,
+                    mustQuantity
                 }
 
                 fetch(`http://localhost:5000/addItem`, {
@@ -72,6 +74,7 @@ const AddItem = ({refetch}) => {
 
                 <input
                     placeholder="Enter quantity" className="input input-bordered "
+                    type="number"
                     {...register("availableQuantity", { required: "Quantity is required" })}
                     aria-invalid={errors.availableQuantity ? "true" : "false"}
                 />
@@ -79,6 +82,7 @@ const AddItem = ({refetch}) => {
 
                 <input
                     placeholder="Enter must take quantity" className="input input-bordered "
+                    type="number"
                     {...register("mustQuantity", { required: "Must quantity is required" })}
                     aria-invalid={errors.mustQuantity ? "true" : "false"}
                 />
@@ -86,6 +90,7 @@ const AddItem = ({refetch}) => {
 
                 <input
                     placeholder="Enter Price" className="input input-bordered "
+                    type="number"
                     {...register("price", { required: "Price is required" })}
                     aria-invalid={errors.price ? "true" : "false"}
                 />

@@ -14,11 +14,13 @@ import Home from './Components/Home/Home';
 import Items from './Components/Items/Items';
 import Loading from './Components/Loading/Loading';
 import Login from './Components/Login/Login';
+import ManageAllOrders from './Components/ManageAllOrders/ManageAllOrders';
 import ManageItems from './Components/ManageItems/ManageItems';
 import MyOrder from './Components/MyOrder/MyOrder';
 import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
 import OrderItem from './Components/OrderItem/OrderItem';
+import Payment from './Components/Payment/Payment';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Signup from './Components/Signup/Signup';
 import StarRating from './Components/StarRating/StarRating';
@@ -61,6 +63,8 @@ function App() {
                 setId={setId}
               >
               </ManageItems>} />
+              <Route path="manageAllOrders" element={<ManageAllOrders></ManageAllOrders>} />
+              <Route path="/dashboard/payment/:id" element={<Payment></Payment>} />
         </Route>
       </Routes>
       <AddItemModel id={id} refetch={refetch}></AddItemModel>

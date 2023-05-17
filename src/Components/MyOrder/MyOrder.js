@@ -43,7 +43,7 @@ const MyOrder = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            bookingDetails.map((owner, index) =>
+                            bookingDetails?.map((owner, index) =>
                                 <tr>
                                     <th>{index+1}</th>
                                     <td>

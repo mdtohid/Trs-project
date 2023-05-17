@@ -26,6 +26,7 @@ const OrderItem = () => {
     }
 
     const { _id, name, price, description, photoUrl, availableQuantity, mustQuantity } = item;
+    console.log(mustQuantity,name);
 
     const onSubmit = async (data) => {
         const ownerName = data.name;
