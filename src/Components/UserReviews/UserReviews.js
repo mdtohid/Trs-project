@@ -8,6 +8,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import StarRating from '../StarRating/StarRating';
+import { useLocation } from 'react-router';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const UserReviews = () => {
     const { isLoading, error1, data: reviews, refetch } = useQuery({
@@ -18,20 +21,40 @@ const UserReviews = () => {
             ),
     })
 
+    const location = useLocation();
+    const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
+    console.log(deviceWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setDeviceWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    console.log(deviceWidth);
+
+
     if (isLoading) {
         return <Loading></Loading>
     }
 
     return (
         <div className='mx-10'>
+            <h1 className='text-2xl text-center mt-14 font-semibold '>User Reviews</h1>
             <Swiper
-                slidesPerView={3}
+                slidesPerView={(deviceWidth<613&&1)||(deviceWidth<900&&2)||(deviceWidth>900&&3)}
                 spaceBetween={30}
                 pagination={{
                     clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper my-10"
+                className="mySwiper mb-10"
             >
                 {
                     reviews.map(review =>
