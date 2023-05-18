@@ -8,6 +8,7 @@ import AddItem from './Components/AddItem/AddItem';
 import AddItemModel from './Components/AddItemModel/AddItemModel';
 import AllUsers from './Components/AllUsers/AllUsers';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Error404 from './Components/Error404/Error404';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -72,6 +73,7 @@ function App() {
           <Route path="manageAllOrders" element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>} />
           <Route path="/dashboard/payment/:id" element={<Payment></Payment>} />
         </Route>
+        <Route path='/*' element={<Error404></Error404>}></Route>
       </Routes>
       <AddItemModel id={id} refetch={refetch}></AddItemModel>
       <ToastContainer />

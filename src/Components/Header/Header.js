@@ -29,7 +29,7 @@ const Header = () => {
         return <Loading></Loading>
     }
     return (
-        <div className="navbar bg-gray-100 py-4 lg:px-16">
+        <div className="navbar bg-gray-100 py-4 lg:px-16 sticky top-0 z-10">
             <div className="navbar-start">
                 <div className="dropdown">
 
@@ -41,7 +41,7 @@ const Header = () => {
                         {navbarOption}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                <Link to='/' className="font-semibold normal-case text-2xl text-cyan-400">SRT Manufacterer</Link>
             </div>
 
             <div className="navbar-end flex">
