@@ -21,7 +21,7 @@ const MyReview = () => {
             starRating
         }
         console.log(review);
-        await fetch(`http://localhost:5000/myReview`, {
+        await fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/myReview`, {
             method: "POST", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",

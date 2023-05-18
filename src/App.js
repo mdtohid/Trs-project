@@ -34,7 +34,7 @@ function App() {
   const { isLoading, error1, data: items, refetch } = useQuery({
     queryKey: ['items'],
     queryFn: () =>
-      fetch(`http://localhost:5000/items`).then(
+      fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/items`).then(
         (res) => res.json(),
       ),
   })
