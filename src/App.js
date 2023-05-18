@@ -21,6 +21,7 @@ import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
 import OrderItem from './Components/OrderItem/OrderItem';
 import Payment from './Components/Payment/Payment';
+import RequireAdmin from './Components/RequireAdmin/RequireAdmin';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Signup from './Components/Signup/Signup';
 import StarRating from './Components/StarRating/StarRating';
@@ -52,19 +53,22 @@ function App() {
           <RequireAuth>
             <Dashboard></Dashboard>
           </RequireAuth>}>
-              <Route index element={<MyProfile></MyProfile>} />
-              <Route path="myReview" element={<MyReview></MyReview>} />
-              <Route path="myOrder" element={<MyOrder></MyOrder>} />
-              <Route path="allUsers" element={<AllUsers></AllUsers>} />
-              <Route path="addItem" element={<AddItem refetch={refetch}></AddItem>} />
-              <Route path="manageItems" element={<ManageItems
+          <Route index element={<MyProfile></MyProfile>} />
+          <Route path="myReview" element={<MyReview></MyReview>} />
+          <Route path="myOrder" element={<MyOrder></MyOrder>} />
+          <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>} />
+          <Route path="addItem" element={<RequireAdmin><AddItem refetch={refetch}></AddItem></RequireAdmin>} />
+          <Route path="manageItems" element={
+            <RequireAdmin>
+              <ManageItems
                 items={items}
                 isLoading={isLoading}
                 setId={setId}
               >
-              </ManageItems>} />
-              <Route path="manageAllOrders" element={<ManageAllOrders></ManageAllOrders>} />
-              <Route path="/dashboard/payment/:id" element={<Payment></Payment>} />
+              </ManageItems>
+            </RequireAdmin>} />
+          <Route path="manageAllOrders" element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>} />
+          <Route path="/dashboard/payment/:id" element={<Payment></Payment>} />
         </Route>
       </Routes>
       <AddItemModel id={id} refetch={refetch}></AddItemModel>

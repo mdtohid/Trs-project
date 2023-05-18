@@ -6,7 +6,7 @@ import Loading from '../Loading/Loading';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import StarRating from '../StarRating/StarRating';
 import { useLocation } from 'react-router';
 import { useState } from 'react';
@@ -45,15 +45,20 @@ const UserReviews = () => {
     }
 
     return (
-        <div className='mx-10'>
+        <div className='px-10 py-10 bg-zinc-100'>
             <h1 className='text-2xl text-center mt-14 font-semibold '>User Reviews</h1>
             <Swiper
-                slidesPerView={(deviceWidth<613&&1)||(deviceWidth<900&&2)||(deviceWidth>900&&3)}
+                slidesPerView={(deviceWidth < 613 && 1) || (deviceWidth < 900 && 2) || (deviceWidth > 900 && 3)}
                 spaceBetween={30}
                 pagination={{
                     clickable: true,
                 }}
-                modules={[Pagination]}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="mySwiper mb-10"
             >
                 {
@@ -92,58 +97,5 @@ export default UserReviews;
 
 
 
-    // import React from 'react';
-    // import { Swiper, SwiperSlide } from "swiper/react";
-
-    // import "swiper/css";
-    // import "swiper/css/pagination";
-
-    // // import "./styles.css";
-    // import { Pagination } from "swiper";
-
-
-
-    // const UserReviews = () => {
-
-    //     return (
-    //         <>
-    //             <Swiper
-    //                 slidesPerView={3}
-    //                 spaceBetween={30}
-    //                 pagination={{
-    //                     clickable: true,
-    //                 }}
-    //                 modules={[Pagination]}
-    //                 className="mySwiper my-10"
-    //             >
-    //                 <SwiperSlide className='bg-red-600 my-10'>
-    //                     <div className="card bg-base-100 shadow-xl">
-    //                         <div className="card-body">
-    //                             <div className='flex items-center'>
-    //                                 <div className="avatar">
-    //                                     <div className="w-16 rounded-full">
-    //                                         <img src={img} alt='' />
-    //                                     </div>
-    //                                 </div>
-    //                                 <div className='ms-2'>
-    //                                     <p className='text-xl font-semibold'>{review?.name}</p>
-    //                                     <p className='font-semibold'>Rating: {review?.starRating}</p>
-    //                                 </div>
-    //                             </div>
-    //                             <p>{review?.comment}</p>
-
-    //                             <div className="card-actions justify-start mt-4">
-    //                                 <button className="btn btn-primary">Buy Now</button>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                 </SwiperSlide>
-    //             </Swiper>
-    //         </>
-
-    //     );
-    // };
-
-    // export default UserReviews;
 
 
