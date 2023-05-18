@@ -21,6 +21,7 @@ import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
 import OrderItem from './Components/OrderItem/OrderItem';
 import Payment from './Components/Payment/Payment';
+import Portfolio from './Components/Portfolio/Portfolio';
 import RequireAdmin from './Components/RequireAdmin/RequireAdmin';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Signup from './Components/Signup/Signup';
@@ -46,6 +47,7 @@ function App() {
         <Route path='/star' element={<StarRating></StarRating>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
+        <Route path='/portfolio' element={<Portfolio></Portfolio>}></Route>
         <Route path='/items' element={<RequireAuth><Items></Items></RequireAuth>}></Route>
         <Route path='/items/:id' element={<RequireAuth><OrderItem></OrderItem></RequireAuth>}></Route>
         <Route path='/team' element={<Team></Team>}></Route>
