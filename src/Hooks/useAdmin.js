@@ -5,7 +5,7 @@ const useAdmin = (email) => {
     const [LoadAdmin, setLoadAdmin]= useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/admin/${email}`)
+            fetch(`http://localhost:5000/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setLoadAdmin(false);

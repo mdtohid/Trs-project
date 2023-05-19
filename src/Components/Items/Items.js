@@ -4,7 +4,7 @@ import Item from '../Item/Item';
 const Items = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        fetch('https://server-12-gx0phzvp9-mdtohid.vercel.app/items')
+        fetch('http://localhost:5000/items')
             .then(res => res.json())
             .then(data => setItems(data))
     }, []);

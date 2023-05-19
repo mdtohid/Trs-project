@@ -15,7 +15,7 @@ const MyProfile = () => {
 
     useEffect(() => {
     if (user) {
-        fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/myProfile/${user?.email}`, {
+        fetch(`http://localhost:5000/myProfile/${user?.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,7 @@ const MyProfile = () => {
         console.log(orderDetails);
         reset();
 
-        await fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/myProfile`, {
+        await fetch(`http://localhost:5000/myProfile`, {
             method: "POST", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const MyProfile = () => {
             .then(data => console.log(data));
 
 
-        await fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/myProfile`, {
+        await fetch(`http://localhost:5000/myProfile`, {
             method: "PUT", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",

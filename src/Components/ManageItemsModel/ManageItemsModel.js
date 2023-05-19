@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const AddItemModel = ({ id, refetch }) => {
+const ManageItemsModel = ({ id, refetch }) => {
     const handleItemDelete = async (id) => {
         if (id) {
-            await fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/item/${id}`, {
+            await fetch(`http://localhost:5000/item/${id}`, {
                 method: "DELETE", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
@@ -18,7 +17,6 @@ const AddItemModel = ({ id, refetch }) => {
                 })
         }
     }
-
     return (
         <>
             <input type="checkbox" id="my-modal-4" className="modal-toggle" />
@@ -34,4 +32,4 @@ const AddItemModel = ({ id, refetch }) => {
     );
 };
 
-export default AddItemModel;
+export default ManageItemsModel;

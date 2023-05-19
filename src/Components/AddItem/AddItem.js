@@ -35,7 +35,7 @@ const AddItem = ({refetch}) => {
                     mustQuantity
                 }
 
-                fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/addItem`, {
+                fetch(`http://localhost:5000/addItem`, {
                     method: "POST", // or 'PUT'
                     headers: {
                         "Content-Type": "application/json",

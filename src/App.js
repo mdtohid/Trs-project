@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import AddItem from './Components/AddItem/AddItem';
-import AddItemModel from './Components/AddItemModel/AddItemModel';
 import AllUsers from './Components/AllUsers/AllUsers';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Error404 from './Components/Error404/Error404';
@@ -17,6 +16,7 @@ import Loading from './Components/Loading/Loading';
 import Login from './Components/Login/Login';
 import ManageAllOrders from './Components/ManageAllOrders/ManageAllOrders';
 import ManageItems from './Components/ManageItems/ManageItems';
+import ManageItemsModel from './Components/ManageItemsModel/ManageItemsModel';
 import MyOrder from './Components/MyOrder/MyOrder';
 import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
@@ -28,17 +28,11 @@ import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Signup from './Components/Signup/Signup';
 import StarRating from './Components/StarRating/StarRating';
 import Team from './Components/Team/Team';
+import useItems from './Hooks/useItems';
 
 function App() {
   const [id, setId] = useState('');
-  const { isLoading, error1, data: items, refetch } = useQuery({
-    queryKey: ['items'],
-    queryFn: () =>
-      fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/items`).then(
-        (res) => res.json(),
-      ),
-  })
-
+  const [isLoading, error1, items, refetch ] = useItems();
 
   return (
     <div className="">
@@ -75,7 +69,7 @@ function App() {
         </Route>
         <Route path='/*' element={<Error404></Error404>}></Route>
       </Routes>
-      <AddItemModel id={id} refetch={refetch}></AddItemModel>
+      <ManageItemsModel id={id} refetch={refetch}></ManageItemsModel>
       <ToastContainer />
       <Footer></Footer>
     </div>

@@ -16,7 +16,7 @@ const UserReviews = () => {
     const { isLoading, error1, data: reviews, refetch } = useQuery({
         queryKey: ['reviews'],
         queryFn: () =>
-            fetch(`https://server-12-gx0phzvp9-mdtohid.vercel.app/reviews`).then(
+            fetch(`http://localhost:5000/reviews`).then(
                 (res) => res.json(),
             ),
     })
