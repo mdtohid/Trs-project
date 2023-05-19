@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OrderItem = () => {
     const { id } = useParams();
@@ -26,7 +28,7 @@ const OrderItem = () => {
     }
 
     const { _id, name, price, description, photoUrl, availableQuantity, mustQuantity } = item;
-    console.log(mustQuantity,name);
+
 
     const onSubmit = async (data) => {
         const ownerName = data.name;
@@ -56,7 +58,10 @@ const OrderItem = () => {
             body: JSON.stringify(orderDetails),
         })
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(data => {
+                console.log(data)
+                toast.success("Add Item successfully");
+            });
     };
 
 

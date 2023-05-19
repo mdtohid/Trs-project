@@ -73,15 +73,15 @@ function App() {
             </RequireAdmin>} />
           <Route path="manageAllOrders" element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>} />
           <Route path="/dashboard/payment/:id" element={
-          <Payment
-          refetch2={refetch2}
-          >
-          </Payment>} />
+            <Payment
+              refetch2={refetch2}
+            >
+            </Payment>} />
         </Route>
         <Route path='/*' element={<Error404></Error404>}></Route>
       </Routes>
-      <ManageItemsModel id={id} refetch={refetch}></ManageItemsModel>
-      <MyOrderModel myOrderId={myOrderId} refetch2={refetch2}></MyOrderModel>
+      <ManageItemsModel isLoading={isLoading} id={id} refetch={refetch}></ManageItemsModel>
+      <MyOrderModel myOrderId={myOrderId} refetch2={refetch2} bookingLoading={bookingLoading}></MyOrderModel>
       <ToastContainer />
       <Footer></Footer>
     </div>

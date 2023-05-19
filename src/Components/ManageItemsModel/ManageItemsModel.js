@@ -1,6 +1,7 @@
 import React from 'react';
+import Loading from '../Loading/Loading';
 
-const ManageItemsModel = ({ id, refetch }) => {
+const ManageItemsModel = ({isLoading, id, refetch }) => {
     const handleItemDelete = async (id) => {
         if (id) {
             await fetch(`http://localhost:5000/item/${id}`, {
@@ -13,10 +14,15 @@ const ManageItemsModel = ({ id, refetch }) => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    refetch();
                 })
+                refetch();
         }
     }
+
+    // if(isLoading){
+    //     return <Loading></Loading>
+    // }
+
     return (
         <>
             <input type="checkbox" id="my-modal-4" className="modal-toggle" />

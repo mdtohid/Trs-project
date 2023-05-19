@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loading from '../Loading/Loading';
 
-const MyOrderModel = ({ myOrderId, refetch2}) => {
+const MyOrderModel = ({ myOrderId, refetch2, bookingLoading}) => {
     const handleRemoveOrder = async (myOrderId) => {
         console.log(myOrderId)
         if (myOrderId) {
@@ -12,10 +12,14 @@ const MyOrderModel = ({ myOrderId, refetch2}) => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    refetch2();
                 })
+                refetch2();
         }
 
+    }
+
+    if(bookingLoading){
+        return <Loading></Loading>
     }
 
     return (

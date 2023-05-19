@@ -8,10 +8,13 @@ const AddItem = ({refetch}) => {
     const onSubmit = async (data) => {
         const name = data.name;
         const description = data.description;
-        const availableQuantity = data.availableQuantity;
-        const price = data.price;
+        const availableQuantity = parseFloat(data.availableQuantity);
+        const price = parseFloat(data.price);
         const img = data.img;
-        const mustQuantity = data.mustQuantity;
+        const mustQuantity = parseFloat(data.mustQuantity);
+
+        console.log( mustQuantity)
+        console.log(typeof mustQuantity)
 
         const formData = new FormData();
         const imgFile = img[0];
@@ -44,13 +47,14 @@ const AddItem = ({refetch}) => {
                 })
                     .then(res => res.json())
                     .then(data => {
+                        reset();
+                        refetch();
                         console.log(data)
                         toast.success("Add Item success");
-                        refetch();
                     });
             });
-
-        reset();
+        
+        
     };
 
     return (
