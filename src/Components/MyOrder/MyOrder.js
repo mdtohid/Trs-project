@@ -3,9 +3,13 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useMyOrder from '../../Hooks/useMyOrder';
 import Loading from '../Loading/Loading';
 
-const MyOrder = ({ bookingLoading, bookingDetails, setMyOrderId }) => {
+const MyOrder = ({setMyOrderId}) => {
+
+    const [bookingLoading, error2, bookingDetails, refetch2] = useMyOrder();
+
 
     if (bookingLoading) {
         return <Loading></Loading>
@@ -60,7 +64,8 @@ const MyOrder = ({ bookingLoading, bookingDetails, setMyOrderId }) => {
                                             <p className='text-center font-semibold text-lg'>Paid</p>
                                             :
                                             <div className='flex flex-col items-center'>
-                                                <Link to={`/dashboard/payment/${owner._id}`} className="btn btn-success btn-xs">Payment</Link>
+                                                <Link to={`/dashboard/payment/${owner._id}`}
+                                                onClick={()=>{refetch2()}} className="btn btn-success btn-xs">Payment</Link>
                                                 <p className=''>Or</p>
                                                 <label htmlFor="my-modal-5" className="btn btn-error btn-xs"
                                                     onClick={() => setMyOrderId(owner._id)}

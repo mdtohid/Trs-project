@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const CheckoutForm = ({ booking }) => {
+const CheckoutForm = ({refetch2, booking }) => {
     const {totalPrice, ownerName, email, _id}= booking;
     const stripe = useStripe();
     const elements = useElements();
@@ -116,7 +116,7 @@ const CheckoutForm = ({ booking }) => {
                     },
                 }}
             />
-            <button className='btn btn-sm btn-success my-5' type="submit" disabled={success || !stripe || !clientSecret}>
+            <button className='btn btn-sm btn-success my-5' type="submit" disabled={success || !stripe || !clientSecret} onClick={()=>refetch2()}>
                 Pay
             </button>
             {cardError && <p className=' text-red-500'>{cardError}</p>}

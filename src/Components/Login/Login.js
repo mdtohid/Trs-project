@@ -24,7 +24,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
     console.log(from);
 
-    useEffect( () =>{
+    useEffect(() => {
         if (token) {
             navigate(from, { replace: true });
         }
@@ -41,7 +41,7 @@ const Login = () => {
         // console.log(email, password);
     };
 
-    
+
 
     return (
         <form className='flex flex-col gap-11 min-h-screen items-center justify-center w-full' onSubmit={handleSubmit(onSubmit)}>
@@ -81,6 +81,18 @@ const Login = () => {
                 </p>
                 <input type="submit" value='Login' className='btn btn-outline w-full' />
                 <p><Link to='/signup'>Create a account?</Link></p>
+            </div>
+
+            <div className="mockup-code w-8/12 md:w-4/12 bg-zinc-100	 text-black mb-10">
+                <pre className='text-lg mb-2 font-semibold'>User Email and Password</pre>
+                <pre data-prefix=">"><code>user@mail.com</code></pre>
+                <pre data-prefix=">"><code>123456</code></pre>
+            </div>
+
+            <div className="mockup-code w-8/12 md:w-4/12 bg-zinc-100	 text-black mb-24">
+                <pre className='text-lg mb-2 font-semibold'>Admin Email and Password</pre>
+                <pre data-prefix=">"><code>adminHero@mail.com</code></pre>
+                <pre data-prefix=">"><code>123456</code></pre>
             </div>
         </form>
     );

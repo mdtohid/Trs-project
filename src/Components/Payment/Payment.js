@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import CheckoutForm from '../CheckoutForm/CheckoutForm';
 import Loading from '../Loading/Loading';
 
-const Payment = () => {
+const Payment = ({refetch2}) => {
     const { id } = useParams();
     const stripePromise = loadStripe('pk_test_51MxbmpHtV0GcfVYYpFel6yJgfbHViNc9pRFdmYuKM0kEdNq6EDL2emamG5bdQ0UMMtlkZzFDcriL5o1adqiCJ2nJ009P2BPLFu');
 
@@ -40,7 +40,7 @@ const Payment = () => {
             <div className="card w-10/12 max-w-md bg-base-100 shadow-2xl">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm booking={booking} />
+                        <CheckoutForm refetch2={refetch2} booking={booking} />
                     </Elements>
                 </div>
             </div>

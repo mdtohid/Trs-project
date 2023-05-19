@@ -58,8 +58,6 @@ function App() {
           <Route path="myReview" element={<MyReview></MyReview>} />
           <Route path="myOrder" element={
             <MyOrder
-              bookingDetails={bookingDetails}
-              bookingLoading={bookingLoading}
               setMyOrderId={setMyOrderId}
             ></MyOrder>} />
           <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>} />
@@ -74,7 +72,11 @@ function App() {
               </ManageItems>
             </RequireAdmin>} />
           <Route path="manageAllOrders" element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>} />
-          <Route path="/dashboard/payment/:id" element={<Payment></Payment>} />
+          <Route path="/dashboard/payment/:id" element={
+          <Payment
+          refetch2={refetch2}
+          >
+          </Payment>} />
         </Route>
         <Route path='/*' element={<Error404></Error404>}></Route>
       </Routes>
