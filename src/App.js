@@ -18,6 +18,7 @@ import ManageAllOrders from './Components/ManageAllOrders/ManageAllOrders';
 import ManageItems from './Components/ManageItems/ManageItems';
 import ManageItemsModel from './Components/ManageItemsModel/ManageItemsModel';
 import MyOrder from './Components/MyOrder/MyOrder';
+import MyOrderModel from './Components/MyOrderModel/MyOrderModel';
 import MyProfile from './Components/MyProfile/MyProfile';
 import MyReview from './Components/MyReview/MyReview';
 import OrderItem from './Components/OrderItem/OrderItem';
@@ -29,10 +30,13 @@ import Signup from './Components/Signup/Signup';
 import StarRating from './Components/StarRating/StarRating';
 import Team from './Components/Team/Team';
 import useItems from './Hooks/useItems';
+import useMyOrder from './Hooks/useMyOrder';
 
 function App() {
   const [id, setId] = useState('');
-  const [isLoading, error1, items, refetch ] = useItems();
+  const [myOrderId, setMyOrderId] = useState('');
+  const [isLoading, error1, items, refetch] = useItems();
+  const [bookingLoading, error2, bookingDetails, refetch2] = useMyOrder();
 
   return (
     <div className="">
@@ -52,7 +56,12 @@ function App() {
           </RequireAuth>}>
           <Route index element={<MyProfile></MyProfile>} />
           <Route path="myReview" element={<MyReview></MyReview>} />
-          <Route path="myOrder" element={<MyOrder></MyOrder>} />
+          <Route path="myOrder" element={
+            <MyOrder
+              bookingDetails={bookingDetails}
+              bookingLoading={bookingLoading}
+              setMyOrderId={setMyOrderId}
+            ></MyOrder>} />
           <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>} />
           <Route path="addItem" element={<RequireAdmin><AddItem refetch={refetch}></AddItem></RequireAdmin>} />
           <Route path="manageItems" element={
@@ -70,6 +79,7 @@ function App() {
         <Route path='/*' element={<Error404></Error404>}></Route>
       </Routes>
       <ManageItemsModel id={id} refetch={refetch}></ManageItemsModel>
+      <MyOrderModel myOrderId={myOrderId} refetch2={refetch2}></MyOrderModel>
       <ToastContainer />
       <Footer></Footer>
     </div>

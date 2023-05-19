@@ -1,21 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 
-const MyOrder = () => {
-    const [user, loading, error] = useAuthState(auth);
+const MyOrder = ({ bookingLoading, bookingDetails, setMyOrderId }) => {
 
-    const { isLoading, error1, data: bookingDetails, refetch } = useQuery({
-        queryKey: ['booking', user],
-        queryFn: () =>
-            fetch(`http://localhost:5000/myBooking/${user?.email}`).then(
-                (res) => res.json(),
-            ),
-    })
-
-    if (isLoading) {
+    if (bookingLoading) {
         return <Loading></Loading>
     }
 
@@ -36,7 +28,7 @@ const MyOrder = () => {
                             <th>Email</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Payment</th>
+                            <th className='text-center'>Payment</th>
                             <th>Delivery</th>
                         </tr>
                     </thead>
@@ -45,7 +37,7 @@ const MyOrder = () => {
                         {
                             bookingDetails?.map((owner, index) =>
                                 <tr>
-                                    <th>{index+1}</th>
+                                    <th>{index + 1}</th>
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             {/* <div className="avatar">
@@ -64,7 +56,19 @@ const MyOrder = () => {
                                     </td>
                                     <td>{owner.totalPrice}</td>
                                     <td>{owner.quantity}</td>
-                                    <td>Purple</td>
+                                    <td>
+                                        {owner.paid ?
+                                            <p className='text-center font-semibold text-lg'>Paid</p>
+                                            :
+                                            <div className='flex flex-col items-center'>
+                                                <Link to={`/dashboard/payment/${owner._id}`} className="btn btn-success btn-xs">Payment</Link>
+                                                <p className=''>Or</p>
+                                                <label htmlFor="my-modal-5" className="btn btn-error btn-xs"
+                                                    onClick={() => setMyOrderId(owner._id)}
+                                                >Remove</label>
+                                            </div>
+                                        }
+                                    </td>
                                     <th>
                                         <button className="btn btn-ghost btn-xs">details</button>
                                     </th>
