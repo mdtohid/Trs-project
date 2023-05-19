@@ -15,7 +15,7 @@ const CheckoutForm = ({refetch2, booking }) => {
     const [processing, setProcessing] = useState(false);
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://server-12-mdtohid.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const CheckoutForm = ({refetch2, booking }) => {
             }
 
             const id = _id;
-            fetch(`http://localhost:5000/booking/${id}`, {
+            fetch(`https://server-12-mdtohid.vercel.app/booking/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

@@ -6,7 +6,7 @@ const MyOrderModel = ({ myOrderId, refetch2, bookingLoading}) => {
     const handleRemoveOrder = async (myOrderId) => {
         console.log(myOrderId)
         if (myOrderId) {
-            await fetch(`http://localhost:5000/myBooking/${myOrderId}`, {
+            await fetch(`https://server-12-mdtohid.vercel.app/myBooking/${myOrderId}`, {
                 method: "DELETE", // or 'PUT'
             })
                 .then(res => res.json())

@@ -13,7 +13,7 @@ const Payment = ({refetch2}) => {
     const { isLoading, error, data: booking } = useQuery({
         queryKey: ['booking', id],
         queryFn: () =>
-            fetch(`http://localhost:5000/booking/${id}`, {
+            fetch(`https://server-12-mdtohid.vercel.app/booking/${id}`, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
@@ -29,12 +29,12 @@ const Payment = ({refetch2}) => {
     }
     return (
         <div className='flex flex-col justify-center items-center mx-5'>
-            <h1 className='text-2xl text-purple-500	'>Please pay for {id} for {booking.itemName}</h1>
+            <h1 className='text-2xl text-purple-500	'>Please pay for {id} for {booking?.itemName}</h1>
             <div className="card w-10/12 max-w-md my-12 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <p className="text-success font-bold">Hello, {booking?.ownerName}</p>
                     <h2 className="card-title">Please pay for {booking?.itemName}</h2>
-                    <p>Please pay: ${booking.totalPrice}</p>
+                    <p>Please pay: ${booking?.totalPrice}</p>
                 </div>
             </div>
             <div className="card w-10/12 max-w-md bg-base-100 shadow-2xl">

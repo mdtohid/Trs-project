@@ -7,7 +7,7 @@ const ManageAllOrders = () => {
     const { isLoading, error1, data: bookings, refetch } = useQuery({
         queryKey: ['booking'],
         queryFn: () =>
-          fetch(`http://localhost:5000/booking`).then(
+          fetch(`https://server-12-mdtohid.vercel.app/booking`).then(
             (res) => res.json(),
           ),
       })
