@@ -1,4 +1,5 @@
 import React from 'react';
+import BusinessSummary from '../BusinessSummary/BusinessSummary';
 import Carousel from '../Carousel/Carousel';
 import Items from '../Items/Items';
 import ItemsHome from '../ItemsHome/ItemsHome';
@@ -11,6 +12,7 @@ const Home = () => {
         <div className='mb-20'>
             <Carousel></Carousel>
             <ItemsHome></ItemsHome>
+            <BusinessSummary></BusinessSummary>
             <UserReviews></UserReviews>
             <Team></Team>
             <NoteCEO></NoteCEO>

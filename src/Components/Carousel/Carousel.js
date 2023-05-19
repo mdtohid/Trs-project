@@ -10,7 +10,7 @@ const Carousel = () => {
                 <img src={carousel4} alt='' className="w-full" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                     <a href="#slide4" className="btn btn-circle">❮</a>
-                    <h1 className='text-8xl text-purple-200	 font-semibold text-center'>Best Drilling <br />
+                    <h1 className='lg:text-8xl text-xl text-purple-200	 font-semibold text-center'>Best Drilling <br />
                         Manufacterer</h1>
                     <a href="#slide2" className="btn btn-circle">❯</a>
                 </div>

@@ -60,7 +60,7 @@ const ManageAllOrders = () => {
                                         {booking.paid?
                                         <p>Paid</p>
                                         :
-                                        <Link to={`/dashboard/payment/${booking._id}`}  className="btn btn-success btn-xs">Payment</Link>
+                                        <p>Unpaid</p>
                                         }
                                     </th>
                                 </tr>

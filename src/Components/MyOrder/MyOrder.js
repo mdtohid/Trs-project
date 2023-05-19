@@ -29,7 +29,6 @@ const MyOrder = ({ bookingLoading, bookingDetails, setMyOrderId }) => {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th className='text-center'>Payment</th>
-                            <th>Delivery</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,9 +68,6 @@ const MyOrder = ({ bookingLoading, bookingDetails, setMyOrderId }) => {
                                             </div>
                                         }
                                     </td>
-                                    <th>
-                                        <button className="btn btn-ghost btn-xs">details</button>
-                                    </th>
                                 </tr>
                             )
                         }
