@@ -162,7 +162,7 @@ const MyProfile = () => {
                         {errors.linkedin && <p role="alert">{errors.linkedin?.message}</p>}
                     </div>
 
-                    <input className='btn btn-outline input input-sm   w-full max-w-sm' type="submit" value='ORDER NOW' />
+                    <input className='btn btn-outline input input-sm   w-full max-w-sm' type="submit" value='ADD OR UPDATE PROFILE' />
                 </form>
             </div>
         </div>

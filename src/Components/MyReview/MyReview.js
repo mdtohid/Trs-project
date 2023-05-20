@@ -58,7 +58,7 @@ const MyReview = () => {
 
                 <div className='w-full'>
                     <StarRating setRating={setRating}></StarRating>
-                    <input className='btn btn-outline input input-sm   w-full max-w-md' type="submit" value='ORDER NOW' />
+                    <input className='btn btn-outline input input-sm   w-full max-w-md' type="submit" value='REVIEW SUBMIT' />
                 </div>
             </form>
         </div>

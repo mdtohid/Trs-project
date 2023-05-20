@@ -62,7 +62,7 @@ const UserReviews = () => {
                 className="mySwiper mb-10"
             >
                 {
-                    reviews.map(review =>
+                    reviews?.map(review =>
                         <SwiperSlide className='my-10'>
                             <div className="card bg-base-100 shadow-xl">
                                 <div className="card-body">

@@ -107,7 +107,7 @@ const AddItem = ({refetch}) => {
                 />
                 {errors.img && <p role="alert">{errors.img?.message}</p>}
 
-                <input className='btn btn-outline w-full' type="submit" value='ORDER NOW' />
+                <input className='btn btn-outline w-full' type="submit" value='ADD ITEM' />
             </form>
         </div>
     );
