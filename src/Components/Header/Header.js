@@ -41,7 +41,7 @@ const Header = () => {
                         {navbarOption}
                     </ul>
                 </div>
-                <Link to='/' className="font-semibold normal-case text-2xl text-cyan-400">SRT Manufacterer</Link>
+                <Link to='/' className="font-semibold normal-case lg:text-2xl text-cyan-400">SRT Manufacturer</Link>
             </div>
 
             <div className="navbar-end flex">
