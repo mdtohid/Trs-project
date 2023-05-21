@@ -18,13 +18,13 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="drawer drawer-mobile">
+        <div className="drawer drawer-mobile h-full">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
                 <h1 className='text-2xl text-center font-semibold mt-5'>Welcome to your Dashboard</h1>
                 <Outlet />
             </div>
-            <div className="drawer-side">
+            <div className=" drawer-side max-h-full	">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 bg-gray-100 text-base-content text-xl font-semibold">
                     {/* <!-- Sidebar content here --> */}
