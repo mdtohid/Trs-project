@@ -3,6 +3,7 @@ import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import logo from '../../image/saw.png';
 import './Header.css';
 const Header = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -10,7 +11,6 @@ const Header = () => {
 
     const location = useLocation();
     const pathname = location.pathname;
-    console.log(location.pathname);
 
     if (loading || loading1) {
         return <Loading></Loading>
@@ -41,7 +41,8 @@ const Header = () => {
                         {navbarOption}
                     </ul>
                 </div>
-                <Link to='/' className="font-semibold normal-case lg:text-2xl text-cyan-400">SRT Manufacturer</Link>
+                <img src={logo} alt="" />
+                <Link to='/' className="ms-2 font-semibold normal-case lg:text-2xl text-cyan-400">TRS-service</Link>
             </div>
 
             <div className="navbar-end flex">

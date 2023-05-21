@@ -11,7 +11,6 @@ import './Dashboard.css';
 const Dashboard = () => {
     const [user, loading, error] = useAuthState(auth);
     const [admin, LoadAdmin] = useAdmin(user.email);
-    console.log(admin, LoadAdmin);
 
     if (loading || LoadAdmin) {
         return <Loading></Loading>
@@ -24,7 +23,7 @@ const Dashboard = () => {
                 <h1 className='text-2xl text-center font-semibold mt-5'>Welcome to your Dashboard</h1>
                 <Outlet />
             </div>
-            <div className=" drawer-side max-h-full	">
+            <div className=" drawer-side max-h-full">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 bg-gray-100 text-base-content text-xl font-semibold">
                     {/* <!-- Sidebar content here --> */}

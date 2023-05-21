@@ -94,7 +94,6 @@ const CheckoutForm = ({refetch2, booking }) => {
                 .then((res) => res.json())
                 .then((data) => {
                     setProcessing(false)
-                    console.log(data)
                 });
         };
     };

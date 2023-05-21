@@ -37,9 +37,6 @@ const UserReviews = () => {
         };
     }, []);
 
-    console.log(deviceWidth);
-
-
     if (isLoading) {
         return <Loading></Loading>
     }

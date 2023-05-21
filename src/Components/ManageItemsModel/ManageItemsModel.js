@@ -13,15 +13,10 @@ const ManageItemsModel = ({isLoading, id, refetch }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                 })
                 refetch();
         }
     }
-
-    // if(isLoading){
-    //     return <Loading></Loading>
-    // }
 
     return (
         <>

@@ -27,7 +27,6 @@ const AllUsers = () => {
             })
             .then(res => res.json())
             .then(data =>{
-                console.log(data)
                 refetch();
             })
         }
@@ -44,7 +43,6 @@ const AllUsers = () => {
             })
             .then(res => res.json())
             .then(data =>{
-                console.log(data);
                 refetch();
             })
         }

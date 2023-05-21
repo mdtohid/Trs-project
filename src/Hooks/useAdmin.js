@@ -13,7 +13,6 @@ const useAdmin = (email) => {
                 })
         }
     }, [email]);
-    // console.log(admin, LoadAdmin);
     return [admin, LoadAdmin];
 };
 

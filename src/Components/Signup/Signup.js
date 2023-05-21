@@ -30,7 +30,6 @@ const Signup = () => {
         const email = data.email;
         const password = data.password;
         const name = data.name;
-        // console.log(email, password)
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
     };

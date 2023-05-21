@@ -10,12 +10,10 @@ const MyOrder = ({setMyOrderId}) => {
 
     const [bookingLoading, error2, bookingDetails, refetch2] = useMyOrder();
 
-
     if (bookingLoading) {
         return <Loading></Loading>
     }
 
-    console.log(bookingDetails);
     return (
         <div className='w-full'>
             <h1 className='text-2xl text-center font-semibold my-10'>Welcome to your Order</h1>

@@ -12,9 +12,7 @@ const AddItem = ({refetch}) => {
         const price = parseFloat(data.price);
         const img = data.img;
         const mustQuantity = parseFloat(data.mustQuantity);
-
-        console.log( mustQuantity)
-        console.log(typeof mustQuantity)
+        // console.log(typeof mustQuantity)
 
         const formData = new FormData();
         const imgFile = img[0];
@@ -49,7 +47,6 @@ const AddItem = ({refetch}) => {
                     .then(data => {
                         reset();
                         refetch();
-                        console.log(data)
                         toast.success("Add Item success");
                     });
             });
