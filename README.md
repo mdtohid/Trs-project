@@ -2,7 +2,7 @@
 
 ---
 
-# Visit the Website: <a href="https://assignment-12-4ff33.web.app/">Click here</a>
+# Visit the website: <a href="https://assignment-12-4ff33.web.app/">Click here</a>
 
 ---
 
