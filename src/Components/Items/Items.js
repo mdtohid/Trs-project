@@ -11,7 +11,7 @@ const Items = () => {
             .then(data => setItems(data))
     }, [setItems]);
 
-    if(items){
+    if(!items){
         <Loading></Loading>
     }
 
