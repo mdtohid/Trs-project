@@ -80,7 +80,6 @@ function App() {
         </Route>
         <Route path='/*' element={<Error404></Error404>}></Route>
       </Routes>
-      <h1>hiiiiiiiiiiii</h1>
       <ManageItemsModel isLoading={isLoading} id={id} refetch={refetch}></ManageItemsModel>
       <MyOrderModel myOrderId={myOrderId} refetch2={refetch2} bookingLoading={bookingLoading}></MyOrderModel>
       <ToastContainer />
