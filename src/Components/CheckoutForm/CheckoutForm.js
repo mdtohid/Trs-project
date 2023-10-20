@@ -15,7 +15,7 @@ const CheckoutForm = ({refetch2, booking }) => {
     const [processing, setProcessing] = useState(false);
 
     useEffect(() => {
-        fetch("https://server-12-mdtohid.vercel.app/create-payment-intent", {
+        fetch("https://trs-project-server-side-main.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const CheckoutForm = ({refetch2, booking }) => {
             }
 
             const id = _id;
-            fetch(`https://server-12-mdtohid.vercel.app/booking/${id}`, {
+            fetch(`https://trs-project-server-side-main.vercel.app/booking/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

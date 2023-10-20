@@ -36,7 +36,7 @@ const AddItem = ({refetch}) => {
                     mustQuantity
                 }
 
-                fetch(`https://server-12-mdtohid.vercel.app/addItem`, {
+                fetch(`https://trs-project-server-side-main.vercel.app/addItem`, {
                     method: "POST", // or 'PUT'
                     headers: {
                         "Content-Type": "application/json",

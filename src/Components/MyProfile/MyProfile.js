@@ -17,7 +17,7 @@ const MyProfile = () => {
 
     // useEffect(() => {
     //     if (user) {
-    //         fetch(`https://server-12-mdtohid.vercel.app/myProfile/${user?.email}`, {
+    //         fetch(`https://trs-project-server-side-main.vercel.app/myProfile/${user?.email}`, {
     //             method: 'GET',
     //             headers: {
     //                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +39,7 @@ const MyProfile = () => {
     const { isLoading, error1, data: profile, refetch } = useQuery({
         queryKey: ['myProfile', user, user?.email, navigate],
         queryFn: () =>
-            fetch(`https://server-12-mdtohid.vercel.app/myProfile/${user?.email}`, {
+            fetch(`https://trs-project-server-side-main.vercel.app/myProfile/${user?.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -75,7 +75,7 @@ const MyProfile = () => {
         console.log(orderDetails);
         reset();
 
-        await fetch(`https://server-12-mdtohid.vercel.app/myProfile`, {
+        await fetch(`https://trs-project-server-side-main.vercel.app/myProfile`, {
             method: "POST", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const MyProfile = () => {
             .then(data => console.log(data));
 
 
-        await fetch(`https://server-12-mdtohid.vercel.app/myProfile`, {
+        await fetch(`https://trs-project-server-side-main.vercel.app/myProfile`, {
             method: "PUT", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",

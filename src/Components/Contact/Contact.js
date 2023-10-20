@@ -13,7 +13,7 @@ const Contact = () => {
     const onSubmit = (data) => {
         console.log(data);
 
-        fetch("http://localhost:5000/contact", {
+        fetch("https://trs-project-server-side-main.vercel.app/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

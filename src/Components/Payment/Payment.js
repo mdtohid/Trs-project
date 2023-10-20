@@ -13,7 +13,7 @@ const Payment = ({refetch2}) => {
     const { isLoading, error, data: booking } = useQuery({
         queryKey: ['booking', id],
         queryFn: () =>
-            fetch(`https://server-12-mdtohid.vercel.app/booking/${id}`, {
+            fetch(`https://trs-project-server-side-main.vercel.app/booking/${id}`, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",

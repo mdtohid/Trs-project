@@ -8,7 +8,7 @@ const useToken = (user) => {
         const email = user?.user?.email;
         const currentUser = { email: email };
         if (email) {
-            fetch(`https://server-12-mdtohid.vercel.app/users/${email}`, {
+            fetch(`https://trs-project-server-side-main.vercel.app/users/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

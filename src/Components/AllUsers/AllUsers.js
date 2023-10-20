@@ -7,7 +7,7 @@ const AllUsers = () => {
     const { isLoading, error1, data: users, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: () =>
-            fetch(`https://server-12-mdtohid.vercel.app/users`).then(
+            fetch(`https://trs-project-server-side-main.vercel.app/users`).then(
                 (res) => res.json(),
             ),
     })
@@ -18,7 +18,7 @@ const AllUsers = () => {
 
     const handleAdmin = async (email) => {
         if (email) {
-            await fetch(`https://server-12-mdtohid.vercel.app/adminUser/${email}`, {
+            await fetch(`https://trs-project-server-side-main.vercel.app/adminUser/${email}`, {
                 method: "PUT", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const AllUsers = () => {
 
     const handleUserDelete = async (email) => {
         if (email) {
-            await fetch(`https://server-12-mdtohid.vercel.app/user/${email}`, {
+            await fetch(`https://trs-project-server-side-main.vercel.app/user/${email}`, {
                 method: "DELETE", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",

@@ -5,7 +5,7 @@ const useItems = () => {
     const { isLoading, error1, data: items, refetch } = useQuery({
         queryKey: ['items'],
         queryFn: () =>
-            fetch(`https://server-12-mdtohid.vercel.app/items`).then(
+            fetch(`https://trs-project-server-side-main.vercel.app/items`).then(
                 (res) => res.json(),
             ),
     })

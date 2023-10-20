@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading';
 const ManageItemsModel = ({isLoading, id, refetch }) => {
     const handleItemDelete = async (id) => {
         if (id) {
-            await fetch(`https://server-12-mdtohid.vercel.app/item/${id}`, {
+            await fetch(`https://trs-project-server-side-main.vercel.app/item/${id}`, {
                 method: "DELETE", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",

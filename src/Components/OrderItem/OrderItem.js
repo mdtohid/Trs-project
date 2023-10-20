@@ -18,7 +18,7 @@ const OrderItem = () => {
     const { isLoading, error, data: item } = useQuery({
         queryKey: ['items', id],
         queryFn: () =>
-            fetch(`https://server-12-mdtohid.vercel.app/items/${id}`).then(
+            fetch(`https://trs-project-server-side-main.vercel.app/items/${id}`).then(
                 (res) => res.json(),
             ),
     })
@@ -50,7 +50,7 @@ const OrderItem = () => {
         console.log(orderDetails);
         reset();
 
-        await fetch("https://server-12-mdtohid.vercel.app/booking", {
+        await fetch("https://trs-project-server-side-main.vercel.app/booking", {
             method: "POST", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",
