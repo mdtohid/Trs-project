@@ -41,6 +41,10 @@ const UserReviews = () => {
         return <Loading></Loading>
     }
 
+    if (error1) {
+        return <Loading></Loading>
+    }
+
     return (
         <div className='px-10 py-10 bg-zinc-100'>
             <h1 className='text-2xl text-center mt-14 font-semibold '>User Reviews</h1>

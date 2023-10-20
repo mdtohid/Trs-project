@@ -5,30 +5,33 @@ import Item from '../Item/Item';
 import Loading from '../Loading/Loading';
 
 const ItemsHome = () => {
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
 
-    // const { isLoading, error1, data: items, refetch } = useQuery({
-    //     queryKey: ['items'],
-    //     queryFn: () =>
-    //         fetch(`https://server-12-mdtohid.vercel.app/items`).then(
-    //             (res) => res.json(),
-    //         ),
-    // })
+    const { isLoading, error1, data: items, refetch } = useQuery({
+        queryKey: ['items'],
+        queryFn: () =>
+            fetch(`https://server-12-mdtohid.vercel.app/items`).then(
+                (res) => res.json(),
+            ),
+    })
 
-    // if (isLoading) {
-    //     return <Loading></Loading>
-    // }
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    if(error1){
+        return <Loading></Loading>
+    }
 
-    useEffect(() => {
-        const loadItems = async () => {
-            await fetch('https://server-12-mdtohid.vercel.app/items')
-                .then(res => res.json())
-                .then(data => setItems(data))
-        }
-        loadItems();
-    }, []);
+    // useEffect(() => {
+    //     const loadItems = async () => {
+    //         await fetch('https://server-12-mdtohid.vercel.app/items')
+    //             .then(res => res.json())
+    //             .then(data => setItems(data))
+    //     }
+    //     loadItems();
+    // }, []);
 
-    console.log(items);
+    // console.log(items);
 
     // Loading alternative is if(){}
 
