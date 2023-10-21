@@ -6,7 +6,8 @@ const Portfolio = () => {
             <div className="card w-11/12 mx-auto bg-red-50 shadow-xl my-14">
                 <div className="card-body">
                     <h2 className="text-2xl text-center">Name: Md Tohidur Rahman</h2>
-                    <h2 className="text-2xl text-center my-5">Email: sagormdTohid@gmail.com</h2>
+                    <h2 className="text-2xl text-center my-5">Email: sagormdtohid@gmail.com
+                    </h2>
 
                     <div>
                         <h2 className='text-2xl font-semibold text-center my-5'>My Skills</h2>
